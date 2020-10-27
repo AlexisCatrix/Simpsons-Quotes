@@ -8,16 +8,17 @@ function fetchSimpsonsQuotesJSON() {
       return response.data; // response.data instead of response.json() with fetch
     })
     .then(function (simpsons) {
-      console.log("data decoded from JSON:", simpsons);
-
       // Build a block of HTML
       const simpsonsQuotesHtml = `
-          <p><strong>${simpsons[0].quote}</strong></p>
+          <p>${simpsons[0].quote}</p>
           <p><strong>${simpsons[0].character}</strong></p>
           <img src="${simpsons[0].image}" />
         `;
       document.querySelector("#simpsonsQuotes").innerHTML = simpsonsQuotesHtml;
     });
 }
-
 fetchSimpsonsQuotesJSON();
+
+document.querySelector("#btn").addEventListener("click", () => {
+  fetchSimpsonsQuotesJSON();
+});
